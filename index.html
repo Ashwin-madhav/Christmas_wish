@@ -1,42 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Christmas wish</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="wish.css" />
-  </head>
-  <body>
-    <!-- tiktok meowish -->
-    <div class="envlope-wrapper">
-      <div id="envelope" class="close">
-        <div class="front flap"></div>
-        <div class="front pocket"></div>
-        <div class="letter">
-          <div class="words line1">"Dear,</div>
-          <div class="words line2">Happy NewYear</div>
-          <div class="words line3">Thank you for being a part of the Encoder AV journey</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encoder AV | New Year 2026 Countdown</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --accent: #00f2ea; /* Neon Cyan */
+            --text-main: #ffffff;
+            --text-muted: #888888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Background image with overlay */
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1467810563316-b5476525c0f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Branding */
+        .brand {
+            position: absolute;
+            top: 30px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-main);
+        }
+        .brand span { color: var(--accent); }
+
+        /* Main Content */
+        .container {
+            text-align: center;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 4rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 20px rgba(0, 242, 234, 0.5);
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Countdown Grid */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #333;
+            padding: 30px;
+            min-width: 140px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 242, 234, 0.2);
+        }
+
+        .number {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* Message when countdown ends */
+        #celebration-msg {
+            display: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 5rem;
+            color: var(--accent);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--accent); }
+            to { text-shadow: 0 0 30px var(--accent), 0 0 10px white; }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .countdown { gap: 15px; }
+            .time-box { min-width: 80px; padding: 15px; }
+            .number { font-size: 2.5rem; }
+            .label { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="brand">ENCODER<span>AV</span></div>
+
+    <div class="container">
+        <!-- Header Text -->
+        <h1>Welcome 2026</h1>
+        <p class="subtitle">Next Generation Production Begins In</p>
+
+        <!-- Timer -->
+        <div class="countdown" id="timer">
+            <div class="time-box">
+                <span class="number" id="days">00</span>
+                <span class="label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="hours">00</span>
+                <span class="label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="minutes">00</span>
+                <span class="label">Minutes</span>
+            </div>
+            <div class="time-box">
+                <span class="number" id="seconds">00</span>
+                <span class="label">Seconds</span>
+            </div>
         </div>
-        <div class="hearts">
-          <div class="heart a1"></div>
-          <div class="heart a2"></div>
-          <div class="heart a3"></div>
-        </div>
-      </div>
-    </div>
-    <div class="reset">
-      <button id="open">Open</button>
-      <button id="reset">Close</button>
+
+        <!-- Hidden Celebration Message -->
+        <div id="celebration-msg">HAPPY NEW YEAR!</div>
+        
+        <br><br>
+        <a href="index.html" style="color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 5px;">Return to Home</a>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="wish.js"></script>
-  </body>
+    <script>
+        // Set the date we're counting down to: Jan 1, 2026
+        const countToDate = new Date("Jan 1, 2026 00:00:00").getTime();
+
+        const updateTimer = setInterval(function() {
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            const distance = countToDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the elements with id
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // If the count down is finished
+            if (distance < 0) {
+                clearInterval(updateTimer);
+                document.getElementById("timer").style.display = "none";
+                document.getElementById("celebration-msg").style.display = "block";
+                document.querySelector(".subtitle").innerText = "THE FUTURE IS NOW";
+            }
+        }, 1000);
+    </script>
+
+</body>
 </html>
-
-
-
